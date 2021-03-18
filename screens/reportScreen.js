@@ -14,7 +14,7 @@ import { Feather } from "@expo/vector-icons";
 export default function ReportScreen({navigation}){
     return (
       <View>
-            ReportScreen test push 
+            ReportScreen
       </View>
     )
 
