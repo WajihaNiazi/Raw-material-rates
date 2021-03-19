@@ -28,20 +28,19 @@ export default function ProductDetails({name,price,MOQ,date,img,detail,location}
             </View>
         </View>
         <View style={styles.itmeDetail}>
-                   <Text style={styles.heading}>Material Details</Text> 
-                   <Text style={styles.info}>{detail}</Text>
+            <Text style={styles.heading}>Material Details</Text> 
+            <Text style={styles.info}>{detail}</Text>
          </View>
+         
       </View>
      
     )
 
 }
-
-
 const styles =StyleSheet.create({
     container:{
-       
-     
+      width:"100%",
+	    height:"100%"  
     },
     itmeInfo:{
       flexDirection:'row',

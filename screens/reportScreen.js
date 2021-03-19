@@ -19,7 +19,5 @@ export default function ReportScreen({navigation}){
     )
 
 }
-const styles =StyleSheet.create({
-    
-   
+const styles =StyleSheet.create({       
 })

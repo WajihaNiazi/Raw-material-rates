@@ -26,7 +26,9 @@ export default function ProductDetail(props){
 }
 const styles =StyleSheet.create({
     container:{
-      backgroundColor:'#f2f2f2'
+      backgroundColor:'#f2f2f2',
+      width:"100%",
+	    height:"100%"
     }
    
 })
