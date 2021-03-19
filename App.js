@@ -13,6 +13,11 @@ import AddProductScreen from "./screens/addproductScreen";
 import ProductScreen from "./screens/productScreen";
 import ProductDetial from "./screens/productDetail";
 import Navlink from "./screens/navlink";
+
+import ProductScreen from "./screens/productList";
+
+import ProductDetail from "./screens/productDetail";
+import ProductList from "./screens/productList";
 export default function App() {
   // useEffect(()=>{
   //    db.transaction(tx=>{
@@ -21,6 +26,8 @@ export default function App() {
   // })
   return (
     <View style={styles.container}>
+      {/* <ProductDetail /> */}
+        {/* <ProductList /> */}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="ProductScreen" component={ProductScreen}  
@@ -85,6 +92,8 @@ export default function App() {
           />
           <Stack.Screen name="Navlink" component={Navlink} />
 
+          <Stack.Screen name="List Of Material" component={ProductList} />
+          <Stack.Screen name="Material Info" component={ProductDetail} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
@@ -94,6 +103,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"#f8f4f4"
+    backgroundColor:'#f2f2f2'
   },
 });
