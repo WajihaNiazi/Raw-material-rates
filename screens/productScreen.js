@@ -4,7 +4,8 @@ import {
     Text,
     FlatList,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    Image
 } from 'react-native';
 import Colors from '../utils/colors';
 import * as SQLite from "expo-sqlite";
@@ -14,12 +15,10 @@ import { Feather } from "@expo/vector-icons";
 export default function ProductScreen({navigation}){
     return (
       <View>
-            ProductScreen
+            <Text>ProductScreen</Text>
       </View>
     )
 
 }
 const styles =StyleSheet.create({
-    
-   
 })
