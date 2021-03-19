@@ -15,7 +15,24 @@ import { Feather } from "@expo/vector-icons";
 export default function Navlink({navigation}){
     return (
       <View>
-            <Text>link</Text>
+        <TouchableOpacity style={{paddingRight:20}}
+            onPress={()=> navigation.navigate('AddProductScreen')}>
+            <Text>
+                AddProduct
+            </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{paddingRight:20}}
+            onPress={()=> navigation.navigate('ProductScreen')}>
+            <Text>
+                Product
+            </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{paddingRight:20}}
+            onPress={()=> navigation.navigate('Report')}>
+            <Text>
+                Report
+            </Text>
+        </TouchableOpacity>
       </View>
     )
 

@@ -29,7 +29,7 @@ export default function App() {
                 <TouchableOpacity style={{paddingRight:20}}
                  onPress={()=> navigation.navigate('Navlink')}>
                   <Text>
-                    <MaterialIcons name="home" size={24} color="red"/>
+                    <MaterialIcons name="menu" size={24} color="#400080"/>
                   </Text>
                 </TouchableOpacity>
               )
@@ -41,7 +41,7 @@ export default function App() {
                 <TouchableOpacity style={{paddingRight:20}}
                  onPress={()=> navigation.navigate('Navlink')}>
                   <Text>
-                    <MaterialIcons name="home" size={24} color="red"/>
+                    <MaterialIcons name="menu" size={24} color="#400080"/>
                   </Text>
                 </TouchableOpacity>
               )
@@ -53,7 +53,7 @@ export default function App() {
                 <TouchableOpacity style={{paddingRight:20}}
                  onPress={()=> navigation.navigate('Navlink')}>
                   <Text>
-                    <MaterialIcons name="home" size={24} color="red"/>
+                    <MaterialIcons name="menu" size={24} color="#400080"/>
                   </Text>
                 </TouchableOpacity>
               )
@@ -65,7 +65,7 @@ export default function App() {
                 <TouchableOpacity style={{paddingRight:20}}
                  onPress={()=> navigation.navigate('Navlink')}>
                   <Text>
-                    <MaterialIcons name="home" size={24} color="red"/>
+                    <MaterialIcons name="menu" size={24} color="#400080"/>
                   </Text>
                 </TouchableOpacity>
               )
@@ -77,7 +77,7 @@ export default function App() {
                 <TouchableOpacity style={{paddingRight:20}}
                  onPress={()=> navigation.navigate('Navlink')}>
                   <Text>
-                    <MaterialIcons name="home" size={24} color="red"/>
+                    <MaterialIcons name="menu" size={24} color="#400080"/>
                   </Text>
                 </TouchableOpacity>
               )
