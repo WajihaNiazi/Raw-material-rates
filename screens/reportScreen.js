@@ -9,15 +9,25 @@ import {
 import Colors from '../utils/colors';
 import * as SQLite from "expo-sqlite";
 import { Feather } from "@expo/vector-icons";
+import ReportItem from "../components/reportItem";
 // const db = SQLite.openDatabase('productRate.db')
-
+const reports = [
+    {id:'1',location:"Darb-khosh",message:"something...."},
+    {id:'2',location:"Darb-khosh",message:"something...."},
+    {id:'3',location:"Darb-khosh",message:"something...."},
+    {id:'3',location:"Darb-khosh",message:"something...."}
+]
 export default function ReportScreen({navigation}){
     return (
-      <View>
-            ReportScreen
-      </View>
+      <FlatList 
+        data={reports} 
+        keyExtractor={(item)=>item.id}
+        renderItem={({item})=>{
+          return <ReportItem
+              location={item.location}
+              message={item.message}
+          />
+        }}
+      />
     )
-
 }
-const styles =StyleSheet.create({       
-})

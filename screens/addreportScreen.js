@@ -10,8 +10,10 @@ import {
 import Colors from '../utils/colors';
 import * as SQLite from "expo-sqlite";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 // const db = SQLite.openDatabase('productRate.db')
 export default function AddReportScreen(props){
+  const navigation = useNavigation();
   const {route} = props;
   const {item} = route.params;
   const {id} = item; 
@@ -38,14 +40,16 @@ export default function AddReportScreen(props){
             // onChangeText={(phone)=>setPhone(phone)} 
           />
            <TouchableOpacity style={[styles.button,{backgroundColor:Colors.primary}]}>
-               <Text style={styles.buttonTxt} onPress={()=>addContact(name,phone,email)}>Save</Text>
+               <Text style={styles.buttonTxt} 
+              //  onPress={()=>addContact(name,phone,email)}
+               >Save</Text>
            </TouchableOpacity>
-           {/* <TouchableOpacity 
+           <TouchableOpacity 
             style={[styles.button,{backgroundColor:'red'}]} 
             onPress={()=> navigation.navigate('ProductScreen')}
             >
                <Text style={styles.buttonTxt}>Cancel</Text>
-           </TouchableOpacity> */}
+           </TouchableOpacity>
       </View>
     )
 
