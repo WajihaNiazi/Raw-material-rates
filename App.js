@@ -14,6 +14,7 @@ import ProductScreen from "./screens/productList";
 
 import ProductDetail from "./screens/productDetail";
 import ProductList from "./screens/productList";
+import AddMaterial from './screens/addMaterial'
 
 export default function App() {
   // useEffect(()=>{
@@ -28,8 +29,9 @@ export default function App() {
 
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="List Of Material" component={ProductList} />
-          <Stack.Screen name="Material Info" component={ProductDetail} />
+          {/* <Stack.Screen name="List Of Materials" component={ProductList} />
+          <Stack.Screen name="Material Info" component={ProductDetail} /> */}
+          <Stack.Screen name="Add Material" component={AddMaterial} />
           
         </Stack.Navigator>
       </NavigationContainer>
