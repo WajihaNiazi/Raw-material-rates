@@ -12,7 +12,7 @@ import * as SQLite from "expo-sqlite";
 import { Feather } from "@expo/vector-icons";
 // const db = SQLite.openDatabase('productRate.db')
 import ProductDetials from '../components/productDetails';
-const image=require('../assets/f.jpg');
+// const image=require('../assets/f.jpg');
 export default function ProductDetail(props){
   const {route} =props;
   const {item}=route.params;
@@ -22,11 +22,11 @@ export default function ProductDetail(props){
          <ProductDetials name={name} img={img}  detail={detail} location={location} price={price} date={date} MOQ={MOQ} />
       </View>
     )
-
 }
 const styles =StyleSheet.create({
     container:{
-      backgroundColor:'#f2f2f2'
-    }
-   
+      backgroundColor:'#f2f2f2',
+      width:"100%",
+	    height:"100%"
+    }  
 })

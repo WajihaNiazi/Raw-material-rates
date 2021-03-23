@@ -5,14 +5,15 @@ import {
     FlatList,
     TouchableOpacity,
     StyleSheet,
-    Image
+    Image,
+    Button
 } from 'react-native';
 import Colors from '../utils/colors';
 import * as SQLite from "expo-sqlite";
 import { Feather } from "@expo/vector-icons";
 // const db = SQLite.openDatabase('productRate.db')
 
-export default function Item({name,price,MOQ,date,img,onPress}){
+export default function Item({name,price,MOQ,date,img,onPress,onpressReport}){
     return (
       <TouchableOpacity onPress={onPress} style={styles.container}>
          <View style={styles.itmeInfo}>
@@ -23,18 +24,17 @@ export default function Item({name,price,MOQ,date,img,onPress}){
                 <Text style={styles.moq}>MOQ : {MOQ}</Text>
                 <Text style={styles.date}>Sine {date}</Text>
             </View>
+            <TouchableOpacity onPress={onpressReport}>
+               <Text>Report</Text>
+            </TouchableOpacity>
         </View>
-      </TouchableOpacity>
-     
+      </TouchableOpacity> 
     )
-
 }
-
-
 const styles =StyleSheet.create({
     container:{
-    
-     
+      width:"100%",
+	    height:"100%"
     },
     itmeInfo:{
       flexDirection:'row',
