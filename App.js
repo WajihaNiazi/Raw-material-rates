@@ -4,9 +4,11 @@ import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as SQLite from "expo-sqlite";
+import * as SQLite from 'expo-sqlite'; //fro db
+const db=SQLite.openDatabase('raw_material_rates.db');//for db
+
 const Stack = createStackNavigator();
-// const db = SQLite.openDatabase('productRate.db')
+
 
 import AddReport from "./screens/addreportScreen";
 import Reports from "./screens/reportScreen";
@@ -20,23 +22,31 @@ import AddMaterial from './screens/addMaterial'
 
 
 export default function App() {
-  // useEffect(()=>{
-  //    db.transaction(tx=>{
-  //      tx.executeSql('create table contact(id integer primary key autoincrement, name text ,phone text,email text)')
-  //    },[],()=>console.log('table created successfully')); 
-  // })
+  useEffect(()=>{//for db
+    db.transaction(para=>{ 
+      para.executeSql('create table if not exists material(id integer primary key autoincrement,name text, price text,date text,location text,detail text,image text);',[],()=>console.log('table created!'));
+    })
+  })
   return (
     <View style={styles.container}>
-      {/* <ProductDetail /> */}
-        {/* <ProductList /> */}
+   
       <NavigationContainer>
         <Stack.Navigator>
-<<<<<<< HEAD
-          {/* <Stack.Screen name="List Of Materials" component={ProductList} />
-          <Stack.Screen name="Material Info" component={ProductDetail} /> */}
+    {/* <Stack.Screen name="List Of Materials" component={ProductList}
+      options={({navigation})=>({
+        headerRight:()=>(
+        <TouchableOpacity style={{paddingRight:20}}
+         onPress={()=> navigation.navigate('Navlink')}>
+          <Text>
+            <MaterialIcons name="menu" size={24} color="#400080"/>
+          </Text>
+        </TouchableOpacity>
+      )
+    })} /> */}
+          {/* <Stack.Screen name="Material Info" component={ProductDetail} />  */}
           <Stack.Screen name="Add Material" component={AddMaterial} />
           
-=======
+
           <Stack.Screen name="ProductScreen" component={ProductScreen}  
             options={({navigation})=>({
               headerRight:()=>(
@@ -49,18 +59,7 @@ export default function App() {
               )
             })}
           />
-          <Stack.Screen name="ProductDetial" component={ProductDetial}
-            options={({navigation})=>({
-              headerRight:()=>(
-                <TouchableOpacity style={{paddingRight:20}}
-                 onPress={()=> navigation.navigate('Navlink')}>
-                  <Text>
-                    <MaterialIcons name="menu" size={24} color="#400080"/>
-                  </Text>
-                </TouchableOpacity>
-              )
-            })}
-          />
+       
           <Stack.Screen name="AddProductScreen" component={AddProductScreen}
             options={({navigation})=>({
               headerRight:()=>(
@@ -122,7 +121,7 @@ export default function App() {
               )
             })}
           />
->>>>>>> fd0108782bc45dcfcdcd9cf6de9d0caf575f2078
+
         </Stack.Navigator>
       </NavigationContainer>
     </View>
