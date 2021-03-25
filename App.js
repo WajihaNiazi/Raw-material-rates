@@ -10,8 +10,6 @@ const Stack = createStackNavigator();
 
 import AddReport from "./screens/addreportScreen";
 import Reports from "./screens/reportScreen";
-import AddProductScreen from "./screens/addproductScreen";
-import ProductDetial from "./screens/productDetail";
 import Navlink from "./screens/navlink";
 import ProductScreen from "./screens/productList";
 import ProductDetail from "./screens/productDetail";
@@ -27,16 +25,8 @@ export default function App() {
   // })
   return (
     <View style={styles.container}>
-      {/* <ProductDetail /> */}
-        {/* <ProductList /> */}
       <NavigationContainer>
         <Stack.Navigator>
-<<<<<<< HEAD
-          {/* <Stack.Screen name="List Of Materials" component={ProductList} />
-          <Stack.Screen name="Material Info" component={ProductDetail} /> */}
-          <Stack.Screen name="Add Material" component={AddMaterial} />
-          
-=======
           <Stack.Screen name="ProductScreen" component={ProductScreen}  
             options={({navigation})=>({
               headerRight:()=>(
@@ -49,19 +39,7 @@ export default function App() {
               )
             })}
           />
-          <Stack.Screen name="ProductDetial" component={ProductDetial}
-            options={({navigation})=>({
-              headerRight:()=>(
-                <TouchableOpacity style={{paddingRight:20}}
-                 onPress={()=> navigation.navigate('Navlink')}>
-                  <Text>
-                    <MaterialIcons name="menu" size={24} color="#400080"/>
-                  </Text>
-                </TouchableOpacity>
-              )
-            })}
-          />
-          <Stack.Screen name="AddProductScreen" component={AddProductScreen}
+          <Stack.Screen name="Add Material" component={AddMaterial} 
             options={({navigation})=>({
               headerRight:()=>(
                 <TouchableOpacity style={{paddingRight:20}}
@@ -122,7 +100,6 @@ export default function App() {
               )
             })}
           />
->>>>>>> fd0108782bc45dcfcdcd9cf6de9d0caf575f2078
         </Stack.Navigator>
       </NavigationContainer>
     </View>

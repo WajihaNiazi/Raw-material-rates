@@ -17,9 +17,9 @@ export default function Navlink({navigation}){
       <View style={styles.contianer}>
           <View>
             <TouchableOpacity style={[styles.TouchableOpacitystyle,{paddingRight:20}]}
-                onPress={()=> navigation.navigate('AddProductScreen')}>
+                onPress={()=> navigation.navigate('Add Material')}>
                 <Text style={styles.text}>
-                    AddProduct
+                     Add Material
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.TouchableOpacitystyle,{paddingRight:20}]}
