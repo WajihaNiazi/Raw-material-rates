@@ -2,20 +2,24 @@ import React,{useState,useEffect} from 'react';
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    Button
 } from 'react-native';
-import Colors from '../utils/colors';
-import * as SQLite from "expo-sqlite";
-import { Feather } from "@expo/vector-icons";
-// const db = SQLite.openDatabase('productRate.db')
-
-export default function ReportItem({location,message}){
+export default function ReportItem({location,message,name,shopNumber}){
     return (
       <View  style={styles.container}>
          <View style={styles.itmeInfo}>
            <View style={styles.detail}>
+                <Text style={styles.repotLocation,{fontWeight:'bold'}}>Name:</Text>
+                <Text style={styles.repotLocation}>{name}</Text>
+                <Text style={styles.repotLocation,{fontWeight:'bold'}}>Location: </Text>
                 <Text style={styles.repotLocation}>{location}</Text>
-                <Text style={styles.message}> {message}</Text>
+                <View>
+                  <Text style={styles.repotLocation,{fontWeight:'bold'}}>Shop Number:</Text>
+                  <Text style={styles.repotLocation}>{shopNumber}</Text>
+                  <Text style={styles.repotLocation,{fontWeight:'bold'}}>Message:</Text>
+                  <Text style={styles.message}> {message}</Text>
+                </View>
             </View>
         </View>
       </View> 
@@ -24,18 +28,17 @@ export default function ReportItem({location,message}){
 const styles =StyleSheet.create({
     container:{
       width:"100%",
-	    height:"100%"
+	    height:"100%",
+      backgroundColor:"#fff"
     },
     itmeInfo:{
-      flexDirection:'row',
-      paddingVertical:16,
-      paddingHorizontal:10,
       boxShadow:'3px 3px 8px 0 rgba(0, 0, 0, 0.1), 3px 3px 8px 0 rgba(0, 0, 0, 0.1)',
-      marginVertical:5,
-      backgroundColor:'white'
+      paddingHorizontal:20,
+      paddingVertical:20,
+      margin:20
+      
     },
     repotLocation :{
-      fontWeight:'bold',
       fontSize:20
     },
     message:{

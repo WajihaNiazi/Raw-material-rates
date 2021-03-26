@@ -4,9 +4,12 @@ import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as SQLite from "expo-sqlite";
+import * as SQLite from 'expo-sqlite'; //fro db
+// import SideMenu from "react-native-side-nav"
+const db=SQLite.openDatabase('raw_material_rates.db');//for db
+
 const Stack = createStackNavigator();
-// const db = SQLite.openDatabase('productRate.db')
+
 
 import AddReport from "./screens/addreportScreen";
 import Reports from "./screens/reportScreen";
@@ -18,15 +21,49 @@ import AddMaterial from './screens/addMaterial'
 
 
 export default function App() {
-  // useEffect(()=>{
-  //    db.transaction(tx=>{
-  //      tx.executeSql('create table contact(id integer primary key autoincrement, name text ,phone text,email text)')
-  //    },[],()=>console.log('table created successfully')); 
-  // })
+  useEffect(()=>{//for db
+    db.transaction(para=>{
+      // para.executeSql("PRAGMA foreign_key=on"); 
+      para.executeSql(
+        'create table if not exists material(id integer primary key autoincrement,name text, price text,date text,location text,detail text,image text);'
+        ,[],()=>console.log('table created!')
+      );
+      para.executeSql(
+        'create table if not exists report(id integer primary key autoincrement,name text,location text,message text,shopNumber text,material_id INTEGER REFERENCES material(id));'
+        ,[],()=>console.log('table tttt created!')
+      );
+      
+    })
+  })
   return (
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="List Of Materials" component={ProductList}
+              options={({navigation})=>({
+                headerRight:()=>(
+                <TouchableOpacity style={{paddingRight:20}}
+                onPress={()=> navigation.navigate('Navlink')}>
+                  <Text>
+                    <MaterialIcons name="menu" size={24} color="#400080"/>
+                  </Text>
+                </TouchableOpacity>
+              )
+              })} 
+          />
+          <Stack.Screen name="Navlink" component={Navlink} />
+          <Stack.Screen name="Report" component={Reports}
+              options={({navigation})=>({
+                headerRight:()=>(
+                <TouchableOpacity style={{paddingRight:20}}
+                onPress={()=> navigation.navigate('Navlink')}>
+                  <Text>
+                    <MaterialIcons name="menu" size={24} color="#400080"/>
+                  </Text>
+                </TouchableOpacity>
+              )
+              })} 
+          />
           <Stack.Screen name="ProductScreen" component={ProductScreen}  
             options={({navigation})=>({
               headerRight:()=>(
@@ -40,43 +77,18 @@ export default function App() {
             })}
           />
           <Stack.Screen name="Add Material" component={AddMaterial} 
-            options={({navigation})=>({
-              headerRight:()=>(
-                <TouchableOpacity style={{paddingRight:20}}
-                 onPress={()=> navigation.navigate('Navlink')}>
-                  <Text>
-                    <MaterialIcons name="menu" size={24} color="#400080"/>
-                  </Text>
-                </TouchableOpacity>
-              )
-            })}
-          />
-          <Stack.Screen name="Reports" component={Reports}
-            options={({navigation})=>({
-              headerRight:()=>(
-                <TouchableOpacity style={{paddingRight:20}}
-                 onPress={()=> navigation.navigate('Navlink')}>
-                  <Text>
-                    <MaterialIcons name="menu" size={24} color="#400080"/>
-                  </Text>
-                </TouchableOpacity>
-              )
-            })}
+              options={({navigation})=>({
+                headerRight:()=>(
+                  <TouchableOpacity style={{paddingRight:20}}
+                  onPress={()=> navigation.navigate('Navlink')}>
+                    <Text>
+                      <MaterialIcons name="menu" size={24} color="#400080"/>
+                    </Text>
+                  </TouchableOpacity>
+                )
+              })}
           />
           <Stack.Screen name="AddReport" component={AddReport} 
-            options={({navigation})=>({
-              headerRight:()=>(
-                <TouchableOpacity style={{paddingRight:20}}
-                 onPress={()=> navigation.navigate('Navlink')}>
-                  <Text>
-                    <MaterialIcons name="menu" size={24} color="#400080"/>
-                  </Text>
-                </TouchableOpacity>
-              )
-            })}
-          />
-          <Stack.Screen name="Navlink" component={Navlink} />
-          <Stack.Screen name="List Of Material" component={ProductList} 
             options={({navigation})=>({
               headerRight:()=>(
                 <TouchableOpacity style={{paddingRight:20}}

@@ -2,22 +2,16 @@ import React,{useState,useEffect} from 'react';
 import {
     View,
     Text,
-    FlatList,
     TouchableOpacity,
     StyleSheet,
     Image,
     Button
 } from 'react-native';
-import Colors from '../utils/colors';
-import * as SQLite from "expo-sqlite";
-import { Feather } from "@expo/vector-icons";
-// const db = SQLite.openDatabase('productRate.db')
-
 export default function Item({name,price,MOQ,date,img,onPress,onpressReport}){
     return (
       <TouchableOpacity onPress={onPress} style={styles.container}>
          <View style={styles.itmeInfo}>
-              <Image style={styles.image}  source={img} />
+              <Image style={styles.image}  source={{ uri: img }} />
            <View style={styles.detail}>
                 <Text style={styles.productName}>{name}</Text>
                 <Text style={styles.productPrice}>{price} AFG</Text>

@@ -29,7 +29,7 @@ export default function Navlink({navigation}){
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.TouchableOpacitystyle,{paddingRight:20}]}
-                onPress={()=> navigation.navigate('Reports')}>
+                onPress={()=> navigation.navigate('Report')}>
                 <Text style={styles.text} >
                     Reports
                 </Text>

@@ -19,7 +19,10 @@ export default function ProductDetail(props){
   const {name, img, detail,location,price,date,MOQ}=item
     return (
       <View style={styles.container}>
-         <ProductDetials name={name} img={img}  detail={detail} location={location} price={price} date={date} MOQ={MOQ} />
+         <ProductDetials 
+          name={name} img={img}  detail={detail} 
+          location={location} price={price} date={date} MOQ={MOQ}
+          />
       </View>
     )
 }
