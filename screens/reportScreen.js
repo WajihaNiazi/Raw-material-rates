@@ -1,33 +1,39 @@
 import React,{useState,useEffect} from 'react';
 import {
-    View,
-    Text,
     FlatList,
-    TouchableOpacity,
     StyleSheet
 } from 'react-native';
-import Colors from '../utils/colors';
-import * as SQLite from "expo-sqlite";
-import { Feather } from "@expo/vector-icons";
+
 import ReportItem from "../components/reportItem";
-// const db = SQLite.openDatabase('productRate.db')
-const reports = [
-    {id:'1',location:"Darb-khosh",Name:"Wajiha",shopNumber:"9",message:"something....something....something....something....something....something....something....something....something....something....something...."},
-    {id:'2',location:"Darb-khosh",Name:"Wajiha",shopNumber:"09",message:"something....something....something....something....something....something....something....something....something....something....something....something...."},
-    {id:'3',location:"Darb-khosh",Name:"Wajiha",shopNumber:"9",message:"something....something....something....something....something....something....something....something....something....something....something....something...."},
-    {id:'3',location:"Darb-khosh",Name:"Wajiha",shopNumber:"9",message:"something....something....something....something....something....something....something....something....something....something....something....something...."}
-]
+
+import * as SQLite from 'expo-sqlite'; //fro db
+const db=SQLite.openDatabase('raw_material_rates.db');//for db
 export default function ReportScreen({navigation}){
+
+  const [reports,setReports]=useState([]); //for db
+  useEffect(()=>{
+      db.transaction(tx=>{
+          tx.executeSql('select * from reportTable,material where material_id = material.id' ,[],(tx,{rows})=>{
+              var data=[];
+              for(var i=0; i<rows.length; i++){
+                  data.push(rows[i]);
+              }
+              setReports(data);
+          })
+      })
+  })
+
     return (
       <FlatList 
         data={reports} 
         keyExtractor={(item)=>item.id}
         renderItem={({item})=>{
           return <ReportItem
-              location={item.location}
+              location={item.reportlocation}
               message={item.message}
               shopNumber={item.shopNumber}
-              name={item.Name}
+              name={item.reportname}
+              productname={item.name}
           />
         }}
       />

@@ -5,7 +5,7 @@ import {
     StyleSheet,
     Button
 } from 'react-native';
-export default function ReportItem({location,message,name,shopNumber}){
+export default function ReportItem({location,message,name,shopNumber,productname}){
     return (
       <View  style={styles.container}>
          <View style={styles.itmeInfo}>
@@ -14,6 +14,8 @@ export default function ReportItem({location,message,name,shopNumber}){
                 <Text style={styles.repotLocation}>{name}</Text>
                 <Text style={styles.repotLocation,{fontWeight:'bold'}}>Location: </Text>
                 <Text style={styles.repotLocation}>{location}</Text>
+                <Text style={styles.repotLocation,{fontWeight:'bold'}}>Product Name: </Text>
+                <Text style={styles.repotLocation}>{productname}</Text>
                 <View>
                   <Text style={styles.repotLocation,{fontWeight:'bold'}}>Shop Number:</Text>
                   <Text style={styles.repotLocation}>{shopNumber}</Text>

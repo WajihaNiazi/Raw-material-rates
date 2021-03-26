@@ -2,13 +2,11 @@ import React,{useState,useEffect} from 'react';
 import {
     View,
     Text,
-    FlatList,
     TouchableOpacity,
     StyleSheet,
     TextInput
 } from 'react-native';
 import Colors from '../utils/colors';
-import { Feather } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import Textarea from 'react-native-textarea';
 
@@ -19,31 +17,22 @@ export default function AddReportScreen(props){
   const navigation = useNavigation();
   const {route} = props;
   const {item} = route.params;
-  const {id} = item; 
+
   const [name, setName]=useState(null);
   const [location, setLocation]=useState(null);
   const [shopNumber, setShopNumber]=useState(null);
   const [message, setMessage]=useState(null);
-  const addReport=(name,location,shopNumber,message,id)=>{
-    // console.log('inserted!');
-
+  const {id} = item;
+  const addReport=(name,location,shopNumber,message)=>{
+    console.log('inserted!')
     db.transaction(tx=>{
-        tx.executeSql('insert into report(name, location,message,shopNumber,material_id) values(?,?,?,?,?);',[name,location,shopNumber,message,id],
-        ()=>navigation.navigate('Report'));
-        console.log("ttt");
-        // console.log([name,location,shopNumber,message,id]);
-      
-      })
-}
+        tx.executeSql('insert into reportTable(reportname,reportlocation,shopNumber,message,material_id) values(?,?,?,?,?);',
+        [name,location,shopNumber,message,id],()=>navigation.navigate('Report'));
+      });
+    }
     return (
       <View  style={styles.formContainer}>
         {/* <Text>{id}</Text> */}
-          <TextInput 
-            placeholder="Location" 
-            style={styles.input}
-            value={location} 
-            onChangeText={(location)=>setLocation(location)}
-          />
           <TextInput 
               placeholder="Name"
               style={styles.input}  
@@ -51,37 +40,41 @@ export default function AddReportScreen(props){
               onChangeText={(name)=>setName(name)}
           />
           <TextInput 
-              placeholder="shopNumber"
+            placeholder="Location" 
+            style={styles.input}
+            value={location} 
+            onChangeText={(location)=>setLocation(location)}
+          />
+          <TextInput 
+              placeholder="Shop Number"
               style={styles.input}  
-              value={shopNumber}
-              onChange={(shopNumber)=>setShopNumber(shopNumber)}
+              value={shopNumber} 
+              onChangeText={(shopNumber)=>setShopNumber(shopNumber)}
           />
-          <Textarea 
-            containerStyle={styles.textareaContainer}
-              style={styles.textarea}
+          <Textarea
+              placeholder="Message...."
+              containerStyle={styles.textareaContainer}
+              style={styles.textarea} 
               value={message}
-              onChange={(message)=>{setMessage(message)}}
               maxLength={130}
-              placeholder={'Message . . .'}
+              onChangeText={(message)=>{setMessage(message)}}
           />
-           <TouchableOpacity style={[styles.button,{backgroundColor:Colors.primary}]}>
-               <Text style={styles.buttonTxt} 
-               onPress={()=>addReport(name,location,shopNumber,message,id)}
-               >Save</Text>
+           <TouchableOpacity 
+              style={[styles.button,{backgroundColor:'blue'}]}  
+              onPress={()=>addReport(name,location,shopNumber,message)}>
+               <Text style={styles.buttonTxt}>Save</Text>
            </TouchableOpacity>
            <TouchableOpacity 
-            style={[styles.button,{backgroundColor:'red'}]} 
-            onPress={()=> navigation.navigate('Report')}
-            >
-               <Text style={styles.buttonTxt}>Cancel</Text>
+            style={[styles.button,{backgroundColor:'red'}]}  
+            onPress={()=> navigation.navigate('ProductScreen')}>
+            <Text style={styles.buttonTxt}>Cancel</Text>
            </TouchableOpacity>
       </View>
     )
-
 }
 const styles =StyleSheet.create({
   formContainer:{
-    borderRadius:0,
+    borderRadius:30,
     marginTop:60,
     paddingVertical:20,
     paddingHorizontal:40,

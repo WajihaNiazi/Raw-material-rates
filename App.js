@@ -29,7 +29,7 @@ export default function App() {
         ,[],()=>console.log('table created!')
       );
       para.executeSql(
-        'create table if not exists report(id integer primary key autoincrement,name text,location text,message text,shopNumber text,material_id INTEGER REFERENCES material(id));'
+        'create table if not exists reportTable(id integer primary key autoincrement,reportname text,reportlocation text,shopNumber text,message text,material_id INTEGER REFERENCES material(id));'
         ,[],()=>console.log('table tttt created!')
       );
       
