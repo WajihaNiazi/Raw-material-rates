@@ -5,27 +5,44 @@ import {
     StyleSheet,
     Button
 } from 'react-native';
-export default function ReportItem({location,message,name,shopNumber,productname}){
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+// const raedMoreBtn = document.querySelector('.read-more-btn ');
+// const text = document.querySelector('.text');
+
+// const [text, setText] = useState(false);
+
+export default function ReportItem({location,message,name,shopNumber,productname,onDeleteReport}){
+  const [textdata, setText]=useState(false);
+    const toggleNumberOfLines = () => { 
+      setText(!textdata);
+    }
     return (
       <View  style={styles.container}>
          <View style={styles.itmeInfo}>
            <View style={styles.detail}>
-                <Text style={styles.repotLocation,{fontWeight:'bold'}}>Name:</Text>
-                <Text style={styles.repotLocation}>{name}</Text>
-                <Text style={styles.repotLocation,{fontWeight:'bold'}}>Location: </Text>
-                <Text style={styles.repotLocation}>{location}</Text>
-                <Text style={styles.repotLocation,{fontWeight:'bold'}}>Product Name: </Text>
-                <Text style={styles.repotLocation}>{productname}</Text>
-                <View>
-                  <Text style={styles.repotLocation,{fontWeight:'bold'}}>Shop Number:</Text>
-                  <Text style={styles.repotLocation}>{shopNumber}</Text>
-                  <Text style={styles.repotLocation,{fontWeight:'bold'}}>Message:</Text>
-                  <Text style={styles.message}> {message}</Text>
-                </View>
+                <Text style={styles.repotLocation}><Text style={styles.repotLocation,{fontWeight:'bold'}}>Name:</Text>{name}</Text>
+                <Text style={styles.repotLocation}><Text style={styles.repotLocation,{fontWeight:'bold'}}>Location: </Text>{location}</Text>
+                {
+                  textdata ?
+                    <View> 
+                      <Text style={styles.repotLocation}><Text style={styles.repotLocation,{fontWeight:'bold'}}>Product Name: </Text>{productname}</Text>
+                      <Text style={styles.repotLocation}><Text style={styles.repotLocation,{fontWeight:'bold'}}>Shop Number:</Text>{shopNumber}</Text>
+                      <Text style={styles.repotLocation,{fontWeight:'bold'}}>Message:</Text>
+                      <Text style={styles.message}> {message}</Text>
+                      <View >
+                        <MaterialCommunityIcons name="trash-can" color="red" size={24} onPress={onDeleteReport}/>
+                      </View>
+                        <Button title="ReadLess" style={{backgroundColor:'blue'}}  onPress={toggleNumberOfLines}/>
+                    </View> 
+                    
+                   : 
+                   <Button title="ReadMore"  style={{backgroundColor:'blue'}} onPress={toggleNumberOfLines}/>
+                }
             </View>
         </View>
       </View> 
     )
+   
 }
 const styles =StyleSheet.create({
     container:{
@@ -41,7 +58,7 @@ const styles =StyleSheet.create({
       
     },
     repotLocation :{
-      fontSize:20
+      fontSize:16
     },
     message:{
       color:'gray',

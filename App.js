@@ -1,14 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useEffect} from 'react';
+import React,{useState,useEffect} from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as SQLite from 'expo-sqlite'; //fro db
-// import SideMenu from "react-native-side-nav"
-const db=SQLite.openDatabase('raw_material_rates.db');//for db
-
+import SideMenu from "react-native-side-nav";
 const Stack = createStackNavigator();
+
+import * as SQLite from 'expo-sqlite'; //fro db
+const db=SQLite.openDatabase('raw_material_rates.db');//for db
 
 
 import AddReport from "./screens/addreportScreen";
@@ -29,7 +29,7 @@ export default function App() {
         ,[],()=>console.log('table created!')
       );
       para.executeSql(
-        'create table if not exists reportTable(id integer primary key autoincrement,reportname text,reportlocation text,shopNumber text,message text,material_id INTEGER REFERENCES material(id));'
+        'create table if not exists tableReport(report_id integer primary key autoincrement,reportname text,reportlocation text,shopNumber text,message text,material_id INTEGER REFERENCES material(id));'
         ,[],()=>console.log('table tttt created!')
       );
       

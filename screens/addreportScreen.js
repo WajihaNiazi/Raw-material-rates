@@ -26,7 +26,7 @@ export default function AddReportScreen(props){
   const addReport=(name,location,shopNumber,message)=>{
     console.log('inserted!')
     db.transaction(tx=>{
-        tx.executeSql('insert into reportTable(reportname,reportlocation,shopNumber,message,material_id) values(?,?,?,?,?);',
+        tx.executeSql('insert into tableReport(reportname,reportlocation,shopNumber,message,material_id) values(?,?,?,?,?);',
         [name,location,shopNumber,message,id],()=>navigation.navigate('Report'));
       });
     }
