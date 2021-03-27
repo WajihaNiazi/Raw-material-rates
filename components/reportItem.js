@@ -6,10 +6,7 @@ import {
     Button
 } from 'react-native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-// const raedMoreBtn = document.querySelector('.read-more-btn ');
-// const text = document.querySelector('.text');
 
-// const [text, setText] = useState(false);
 
 export default function ReportItem({location,message,name,shopNumber,productname,onDeleteReport}){
   const [textdata, setText]=useState(false);
@@ -32,11 +29,11 @@ export default function ReportItem({location,message,name,shopNumber,productname
                       <View >
                         <MaterialCommunityIcons name="trash-can" color="red" size={24} onPress={onDeleteReport}/>
                       </View>
-                        <Button title="ReadLess" style={{backgroundColor:'blue'}}  onPress={toggleNumberOfLines}/>
+
+                        <Text onPress={toggleNumberOfLines} > ReadLess</Text>
                     </View> 
-                    
                    : 
-                   <Button title="ReadMore"  style={{backgroundColor:'blue'}} onPress={toggleNumberOfLines}/>
+                   <Text onPress={toggleNumberOfLines}>ReadMore</Text>
                 }
             </View>
         </View>

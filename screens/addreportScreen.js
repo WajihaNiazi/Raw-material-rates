@@ -11,18 +11,19 @@ import { useNavigation } from '@react-navigation/native';
 import Textarea from 'react-native-textarea';
 
 import * as SQLite from 'expo-sqlite'; //fro db
-const db=SQLite.openDatabase('raw_material_rates.db');//for db
+const db=SQLite.openDatabase('raw_material_rate.db');//for db
 
 export default function AddReportScreen(props){
   const navigation = useNavigation();
+
   const {route} = props;
-  const {item} = route.params;
+
+  const {id} = route.params;
 
   const [name, setName]=useState(null);
   const [location, setLocation]=useState(null);
   const [shopNumber, setShopNumber]=useState(null);
   const [message, setMessage]=useState(null);
-  const {id} = item;
   const addReport=(name,location,shopNumber,message)=>{
     console.log('inserted!')
     db.transaction(tx=>{
@@ -60,14 +61,14 @@ export default function AddReportScreen(props){
               onChangeText={(message)=>{setMessage(message)}}
           />
            <TouchableOpacity 
-              style={[styles.button,{backgroundColor:'blue'}]}  
+              style={[styles.btn,{backgroundColor:'blue'}]}  
               onPress={()=>addReport(name,location,shopNumber,message)}>
-               <Text style={styles.buttonTxt}>Save</Text>
+               <Text style={styles.btnTxt}>Save</Text>
            </TouchableOpacity>
            <TouchableOpacity 
-            style={[styles.button,{backgroundColor:'red'}]}  
+            style={[styles.btn,{backgroundColor:'red'}]}  
             onPress={()=> navigation.navigate('ProductScreen')}>
-            <Text style={styles.buttonTxt}>Cancel</Text>
+            <Text style={styles.btnTxt}>Cancel</Text>
            </TouchableOpacity>
       </View>
     )
@@ -106,8 +107,16 @@ textarea: {
 
 
 },
-buttonTxt:{
-    color:Colors.white,
-}
+btn:{
+  padding:10,
+  marginTop:20,
+  borderRadius:5,
+  justifyContent:'center',
+  alignItems:"center"
+},
+btnTxt:{
+  color:'white',
+  fontWeight:'bold'
+},
    
 })

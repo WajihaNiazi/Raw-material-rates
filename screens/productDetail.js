@@ -9,13 +9,18 @@ import ProductDetials from '../components/productDetails';
 export default function ProductDetail(props){
   const {route} =props;
   const {item}=route.params;
-  const {name, img, detail,location,price,date,MOQ}=item
+  const {name, img, detail,location,price,date,unit,id}=item
     return (
       <View style={styles.container}>
          <ProductDetials 
-          name={name} img={img}  detail={detail} 
-          location={location} price={price} date={date} MOQ={MOQ}
-          />
+            name={name} 
+            img={img}
+            id={id} 
+            detail={detail} 
+            location={location} 
+            price={price} 
+            date={date} 
+            unit={unit} />
       </View>
     )
 }
