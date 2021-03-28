@@ -2,10 +2,20 @@ import React,{useState,useEffect} from 'react';
 import {
     View,
     Text,
+    TouchableOpacity,
     StyleSheet,
     Image
 } from 'react-native';
-export default function ProductDetails({name,price,MOQ,date,img,detail,location}){
+import * as SQLite from 'expo-sqlite'; //fro db
+const db=SQLite.openDatabase('raw_material.db');//for db
+import {useNavigation} from '@react-navigation/native'
+export default function ProductDetails({id,name,price,date,unit,location,detail,img}){
+ const navigation = useNavigation()
+  const deleteMaterial=()=>{
+    db.transaction(tx=>{
+        tx.executeSql('delete from material where id=?',[id],()=>navigation.navigate("List_Of_Materials"));
+    })
+} 
     return (
       <View style={styles.container}>
          <View style={styles.imgContainer}>
@@ -15,7 +25,7 @@ export default function ProductDetails({name,price,MOQ,date,img,detail,location}
            <View style={styles.detail}>
                 <Text style={styles.productName}>{name}</Text>
                 <Text style={styles.productPrice}>Price : {price} AFG</Text>
-                <Text style={styles.moq}>MOQ : {MOQ}</Text>
+                <Text style={styles.moq}>Unit : {unit}</Text>
                 <Text style={styles.date}>Sine {date}</Text>
                 <Text style={styles.date}>Location {location}</Text>
             </View>
@@ -23,6 +33,15 @@ export default function ProductDetails({name,price,MOQ,date,img,detail,location}
         <View style={styles.itmeDetail}>
             <Text style={styles.heading}>Material Details</Text> 
             <Text style={styles.info}>{detail}</Text>
+            
+          <TouchableOpacity style={[styles.btn,{backgroundColor:'#127bb8'}]} >
+            <Text style={styles.btnTxt} onPress={()=>{
+              navigation.navigate('AddReport',{id:id})
+              }}>Report</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.btn,{backgroundColor:'red'}]} >
+            <Text style={styles.btnTxt} onPress={deleteMaterial} >Delete</Text>
+        </TouchableOpacity>
          </View>
          
       </View>
@@ -87,7 +106,19 @@ const styles =StyleSheet.create({
     },
     info:{
         fontSize:16
-    }
+    },
+    btn:{
+      padding:10,
+      marginTop:20,
+      borderRadius:5,
+      justifyContent:'center',
+      alignItems:"center",
+      
+  },
+  btnTxt:{
+      color:'white',
+      fontWeight:'bold'
+  }
 
    
 })

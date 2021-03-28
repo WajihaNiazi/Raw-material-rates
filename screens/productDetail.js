@@ -9,13 +9,26 @@ import ProductDetials from '../components/productDetails';
 export default function ProductDetail(props){
   const {route} =props;
   const {item}=route.params;
-  const {name, img, detail,location,price,date,MOQ}=item
+  const {name, img, detail,location,price,date,unit,id}=item
+  const images = [
+    require("../assets/images/rice.jpg"),
+    require("../assets/images/rice.jpg"),
+    require("../assets/images/gandom.jpg"),
+    require("../assets/images/oil.jpg"),
+    require("../assets/images/gas.jpg"),
+    require("../assets/images/wood.jpg")
+]
     return (
       <View style={styles.container}>
          <ProductDetials 
-          name={name} img={img}  detail={detail} 
-          location={location} price={price} date={date} MOQ={MOQ}
-          />
+            name={name} 
+            img={images[id]}
+            id={id} 
+            detail={detail} 
+            location={location} 
+            price={price} 
+            date={date} 
+            unit={unit} />
       </View>
     )
 }

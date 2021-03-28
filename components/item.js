@@ -5,9 +5,9 @@ import {
     TouchableOpacity,
     StyleSheet,
     Image,
-    Button
 } from 'react-native';
-export default function Item({name,price,MOQ,date,img,onPress,onpressReport}){
+
+export default function Item({name,price,date,unit,location,detail,img,onPress}){
     return (
       <TouchableOpacity onPress={onPress} style={styles.container}>
          <View style={styles.itmeInfo}>
@@ -15,12 +15,9 @@ export default function Item({name,price,MOQ,date,img,onPress,onpressReport}){
            <View style={styles.detail}>
                 <Text style={styles.productName}>{name}</Text>
                 <Text style={styles.productPrice}>{price} AFG</Text>
-                <Text style={styles.moq}>MOQ : {MOQ}</Text>
+                <Text style={styles.moq}>Unit : {unit}</Text>
                 <Text style={styles.date}>Sine {date}</Text>
             </View>
-            <TouchableOpacity onPress={onpressReport}>
-               <Text>Report</Text>
-            </TouchableOpacity>
         </View>
       </TouchableOpacity> 
     )
