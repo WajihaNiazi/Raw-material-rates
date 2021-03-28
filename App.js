@@ -6,7 +6,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 import * as SQLite from 'expo-sqlite'; //fro db
-
 const db=SQLite.openDatabase('raw_material.db');//for db
 
 
@@ -75,7 +74,6 @@ export default function App() {
           />
         
           <Stack.Screen name="Add Material" component={AddMaterial} 
-
             options={({navigation})=>({
               headerStyle:{backgroundColor:'#127bb8'},
               headerTintColor:'white',
@@ -86,12 +84,8 @@ export default function App() {
               headerStyle:{backgroundColor:'#127bb8'},
               headerTintColor:'white',
             })} 
-          
-
           />
-          <Stack.Screen name="AddReport" component={AddReport} />
           <Stack.Screen name="Material Info" component={ProductDetail} 
-
             options={({navigation})=>({
               headerStyle:{backgroundColor:'#127bb8'},
               headerTintColor:'white',
