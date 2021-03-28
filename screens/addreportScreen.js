@@ -11,7 +11,9 @@ import { useNavigation } from '@react-navigation/native';
 import Textarea from 'react-native-textarea';
 
 import * as SQLite from 'expo-sqlite'; //fro db
+
 const db=SQLite.openDatabase('raw_material.db');//for db
+
 
 export default function AddReportScreen(props){
   const navigation = useNavigation();
@@ -61,7 +63,9 @@ export default function AddReportScreen(props){
               onChangeText={(message)=>{setMessage(message)}}
           />
            <TouchableOpacity 
+
               style={[styles.btn,{backgroundColor:'#127bb8'}]}  
+
               onPress={()=>addReport(name,location,shopNumber,message)}>
                <Text style={styles.btnTxt}>Save</Text>
            </TouchableOpacity>

@@ -6,7 +6,9 @@ import {
 } from 'react-native';
 import Item from "../components/item";
 import * as SQLite from 'expo-sqlite'; //fro db
+
 const db=SQLite.openDatabase('raw_material.db');//for db
+
 
 export default function ProductList({navigation}){  
   const [products,setProducts]=useState([]); //for db
@@ -21,6 +23,7 @@ export default function ProductList({navigation}){
           })
       })
   })
+
   const images = [
     require("../assets/images/rice.jpg"),
     require("../assets/images/rice.jpg"),
@@ -29,6 +32,7 @@ export default function ProductList({navigation}){
     require("../assets/images/gas.jpg"),
     require("../assets/images/wood.jpg")
 ]
+
    return(
     <View>
         <FlatList data={products} 
@@ -39,7 +43,9 @@ export default function ProductList({navigation}){
             price={item.price}
             unit={item.unit} 
             date={item.date} 
+
             img={images[item.id]}
+
             onPress={()=>{navigation.navigate('Material Info',{item:item})}}
             />
         }}/>

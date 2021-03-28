@@ -29,10 +29,13 @@ export default function ReportItem({location,message,name,shopNumber,productname
                       <View >
                         <MaterialCommunityIcons name="trash-can" color="red" size={24} onPress={onDeleteReport}/>
                       </View>
+
                         <Text style={{color:'#127bb8'}} onPress={toggleNumberOfLines} > ReadLess</Text>
                     </View> 
                    : 
                    <Text style={{color:'#127bb8'}} onPress={toggleNumberOfLines}>ReadMore</Text>
+
+                   
                 }
             </View>
         </View>

@@ -10,6 +10,7 @@ export default function ProductDetail(props){
   const {route} =props;
   const {item}=route.params;
   const {name, img, detail,location,price,date,unit,id}=item
+
   const images = [
     require("../assets/images/rice.jpg"),
     require("../assets/images/rice.jpg"),
@@ -18,11 +19,14 @@ export default function ProductDetail(props){
     require("../assets/images/gas.jpg"),
     require("../assets/images/wood.jpg")
 ]
+
     return (
       <View style={styles.container}>
          <ProductDetials 
             name={name} 
+
             img={images[id]}
+
             id={id} 
             detail={detail} 
             location={location} 

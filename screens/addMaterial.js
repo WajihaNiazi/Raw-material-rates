@@ -12,7 +12,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as SQLite from 'expo-sqlite'; //fro db
+
 const db=SQLite.openDatabase('raw_material.db');//for db
+
 
 export default function addMaterial({navigation}){
     const [name, setName]=useState(null);
@@ -23,10 +25,11 @@ export default function addMaterial({navigation}){
     const [unit, setUnit]=useState(null);
 
     const addMaterialFun=(name,price,date,unit,location,detail)=>{
-        // console.log('inserted!');
 
+        // console.log('inserted!');
         db.transaction(tx=>{
             console.log('inserted!')
+
             tx.executeSql('insert into material(name,price,date,unit, location,detail) values(?,?,?,?,?,?);',[name,price,date,unit,location,detail],()=>navigation.navigate('List_Of_Materials'));
         })
     }
@@ -49,9 +52,10 @@ export default function addMaterial({navigation}){
           maxLength={130}
            placeholder={'Description . . .'}
          />
-        
+      
         <TouchableOpacity style={[styles.btn,{backgroundColor:'#127bb8'}]} >
             <Text style={styles.btnTxt} onPress={()=>addMaterialFun(name,price,date,unit,location,detail)}>Save</Text>
+
         </TouchableOpacity>
          <TouchableOpacity style={[styles.btn,{backgroundColor:'red'}]}>
             <Text style={styles.btnTxt}>Cancel</Text>

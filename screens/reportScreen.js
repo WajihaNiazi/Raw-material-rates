@@ -7,7 +7,9 @@ import {
 import ReportItem from "../components/reportItem";
 
 import * as SQLite from 'expo-sqlite'; //fro db
+
 const db=SQLite.openDatabase('raw_material.db');//for db
+
 export default function ReportScreen({navigation}){
  
   const [reports,setReports]=useState([]); //for db

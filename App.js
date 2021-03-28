@@ -6,7 +6,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 import * as SQLite from 'expo-sqlite'; //fro db
+
 const db=SQLite.openDatabase('raw_material.db');//for db
+
 
 
 import AddReport from "./screens/addreportScreen";
@@ -21,7 +23,9 @@ export default function App() {
   useEffect(()=>{//for db
     db.transaction(para=>{
       // para.executeSql("PRAGMA foreign_key=on"); 
+
       para.executeSql('create table if not exists material(id integer primary key autoincrement,name text, price text,date text,unit text,location text,detail text);',[],()=>console.log('table created!'));
+
       para.executeSql(
         'create table if not exists tableReport(report_id integer primary key autoincrement,reportname text,reportlocation text,shopNumber text,message text,material_id INTEGER REFERENCES material(id));'
         ,[],()=>console.log('table tttt created!')
@@ -31,8 +35,10 @@ export default function App() {
   })
   return (
     <View style={styles.container}>
+
       <NavigationContainer >
         <Stack.Navigator style={{backgroundColor:"#127bb8"}}>
+
           <Stack.Screen name="List_Of_Materials" component={ProductList}
               options={({navigation})=>({
                 title:'List of Materials',
@@ -69,6 +75,7 @@ export default function App() {
           />
         
           <Stack.Screen name="Add Material" component={AddMaterial} 
+
             options={({navigation})=>({
               headerStyle:{backgroundColor:'#127bb8'},
               headerTintColor:'white',
@@ -80,12 +87,16 @@ export default function App() {
               headerTintColor:'white',
             })} 
           
+
           />
+          <Stack.Screen name="AddReport" component={AddReport} />
           <Stack.Screen name="Material Info" component={ProductDetail} 
+
             options={({navigation})=>({
               headerStyle:{backgroundColor:'#127bb8'},
               headerTintColor:'white',
             })}
+
           />
         </Stack.Navigator>
       </NavigationContainer>

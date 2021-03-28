@@ -6,8 +6,10 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
+
 import * as SQLite from 'expo-sqlite'; //fro db
 const db=SQLite.openDatabase('raw_material.db');//for db
+
 import {useNavigation} from '@react-navigation/native'
 export default function ProductDetails({id,name,price,date,unit,location,detail,img}){
  const navigation = useNavigation()
@@ -34,7 +36,9 @@ export default function ProductDetails({id,name,price,date,unit,location,detail,
             <Text style={styles.heading}>Material Details</Text> 
             <Text style={styles.info}>{detail}</Text>
             
+
           <TouchableOpacity style={[styles.btn,{backgroundColor:'#127bb8'}]} >
+
             <Text style={styles.btnTxt} onPress={()=>{
               navigation.navigate('AddReport',{id:id})
               }}>Report</Text>
